@@ -27,8 +27,8 @@ source "proxmox-iso" "ubuntu-server-noble" {
     # insecure_skip_tls_verify = true
 
     # VM General Settings
-    node = "your-proxmox-node"
-    vm_id = "100"
+    node = "pve"
+    vm_id = "500"
     vm_name = "ubuntu-server-noble"
     template_description = "Ubuntu Server Noble Image"
 
@@ -37,10 +37,10 @@ source "proxmox-iso" "ubuntu-server-noble" {
     # iso_file = "local:iso/ubuntu-24.04-live-server-amd64.iso"
     # - or -
     # (Option 2) Download ISO
-    # iso_url = "https://releases.ubuntu.com/24.04/ubuntu-24.04-live-server-amd64.iso"
-    # iso_checksum = "8762f7e74e4d64d72fceb5f70682e6b069932deedb4949c6975d0f0fe0a91be3"
-    iso_storage_pool = "local"
-    unmount_iso = true
+    iso_url = "https://releases.ubuntu.com/noble/ubuntu-24.04.2-live-server-amd64.iso"
+    
+    iso_checksum = "d6dab0c3a657988501b4bd76f1297c053df710e06e0c3aece60dead24f270b4d"
+    iso_storage_pool = "ISO"
 
     # VM System Settings
     qemu_agent = true
@@ -51,13 +51,12 @@ source "proxmox-iso" "ubuntu-server-noble" {
     disks {
         disk_size = "20G"
         format = "raw"
-        storage_pool = "local-lvm"
-        storage_pool_type = "lvm"
+        storage_pool = "local"
         type = "virtio"
     }
 
     # VM CPU Settings
-    cores = "1"
+    cores = "2"
 
     # VM Memory Settings
     memory = "2048"
@@ -71,7 +70,7 @@ source "proxmox-iso" "ubuntu-server-noble" {
 
     # VM Cloud-Init Settings
     cloud_init = true
-    cloud_init_storage_pool = "local-lvm"
+    cloud_init_storage_pool = "local"
 
     # PACKER Boot Commands
     boot_command = [
@@ -94,13 +93,13 @@ source "proxmox-iso" "ubuntu-server-noble" {
     # http_port_min           = 8802
     # http_port_max           = 8802
 
-    ssh_username            = "your-user-name"
+    ssh_username            = "admin"
 
     # (Option 1) Add your Password here
     # ssh_password        = "your-password"
     # - or -
     # (Option 2) Add your Private SSH KEY file here
-    # ssh_private_key_file    = "~/.ssh/id_rsa"
+    ssh_private_key_file    = "~/.ssh/ubuntu-pkr.key"
 
     # Raise the timeout, when installation takes longer
     ssh_timeout             = "30m"
