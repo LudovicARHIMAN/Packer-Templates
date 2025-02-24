@@ -1,10 +1,10 @@
 # Packer-Templates
 
-A Repository to store and share my packer tempaltes for my ProxmoxVE server. 
+A Repository to store and share my packer templates for my ProxmoxVE server. 
 
 ## credentials.pkr.hcl
 
-Do not forget to create a credential file so packer will be able connect to your ProxmoxVE
+Do not forget to create a credential file at the project root directory so packer will be able connect to your ProxmoxVE
 
 
 ```hcl
